@@ -19,12 +19,12 @@ class Calculator:
         return sum(i.amount for i in self.records
                    if date_week_ago <= i.date <= date)
 
-    def my_limit_today(self):
+    def get_limit_today(self):
         return self.limit - self.get_today_stats()
                 
 
 class Record():
-    def __init__(self, amount, comment, date = None):
+    def __init__(self, amount, comment, date=None):
         self.amount = amount
         self.comment = comment
         if date is None:
@@ -35,13 +35,13 @@ class Record():
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
-        my_limit_today = super().my_limit_today()
+        my_limit_today = self.get_limit_today()
         
         if my_limit_today <= 0:
             return 'Хватит есть!'
         
-        return ('Сегодня можно съесть что-нибудь ещё, ' +
-                f'но с общей калорийностью не более {my_limit_today} кКал')
+        return (f'Сегодня можно съесть что-нибудь ещё, \
+но с общей калорийностью не более {my_limit_today} кКал')
         
 
 
@@ -50,7 +50,7 @@ class CashCalculator(Calculator):
     EURO_RATE = 77.83
     
     def get_today_cash_remained(self, currency):
-        remains = self.my_limit_today()
+        remains = self.get_limit_today()
 
         if remains == 0:
             return 'Денег нет, держись'
