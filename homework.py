@@ -40,8 +40,8 @@ class CaloriesCalculator(Calculator):
         if my_limit_today <= 0:
             return 'Хватит есть!'
         
-        return (f'Сегодня можно съесть что-нибудь ещё, \
-но с общей калорийностью не более {my_limit_today} кКал')
+        return ('Сегодня можно съесть что-нибудь ещё, '
+                f'но с общей калорийностью не более {my_limit_today} кКал')
         
 
 
